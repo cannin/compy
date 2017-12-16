@@ -5,11 +5,9 @@ openssl req -x509 -newkey rsa:2048 -nodes -keyout ca.key -out ca.crt -days 3650 
 
 echo 'Generated server certificate:'
 cat cert.crt
-echo
 echo 'Generated CA certificate:'
 cat ca.crt
 
-exec ./compy \
-    -cert cert.crt -key cert.key \
-    -ca ca.crt -cakey ca.key \
-    :9999
+#exec compy -cert cert.crt -key cert.key -ca ca.crt -cakey ca.key -host :9999
+#exec compy
+exec compy -cert cert.crt -key cert.key -ca ca.crt -cakey ca.key
