@@ -18,13 +18,16 @@ RUN go get github.com/barnacs/compy
 WORKDIR /gosource/src/github.com/barnacs/compy/
 RUN go install
 
-WORKDIR /opt/compy
-COPY docker.sh /opt/compy/
-
 RUN apt-get install -y nodejs npm nodejs-legacy
 RUN npm install -g http-server
 
 RUN apt-get install -y supervisor
+
+WORKDIR /opt/compy
+COPY docker.sh /opt/compy/
+
+# Configure supervisord
+COPY supervisor/*.conf /etc/supervisor/conf.d/
 
 EXPOSE 9999
 CMD ["/usr/bin/supervisord"]
