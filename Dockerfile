@@ -30,4 +30,5 @@ COPY docker.sh proxy.pac /opt/compy/
 COPY supervisor/*.conf /etc/supervisor/conf.d/
 
 EXPOSE 9999
+EXPOSE 8080
 CMD ["/usr/bin/supervisord"]
