@@ -24,7 +24,7 @@ RUN npm install -g http-server
 RUN apt-get install -y supervisor
 
 WORKDIR /opt/compy
-COPY docker.sh /opt/compy/
+COPY docker.sh proxy.pac /opt/compy/
 
 # Configure supervisord
 COPY supervisor/*.conf /etc/supervisor/conf.d/
