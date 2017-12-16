@@ -21,14 +21,10 @@ RUN go install
 WORKDIR /opt/compy
 COPY docker.sh /opt/compy/
 
-# TODO: configure HTTP BASIC authentication
-# TODO: user-provided certificates
-ENV CERTIFICATE_DOMAIN="localhost"
+RUN apt-get install -y nodejs npm nodejs-legacy
+RUN npm install -g http-server
 
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:certbot/certbot
-RUN apt-get update
-RUN apt-get install -y certbot
+RUN apt-get install -y supervisor
 
 EXPOSE 9999
-ENTRYPOINT ["./docker.sh"]
+CMD ["/usr/bin/supervisord"]
